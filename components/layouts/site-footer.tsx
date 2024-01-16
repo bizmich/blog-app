@@ -6,7 +6,7 @@ const SiteFooter = () => {
   return (
     <footer className='bg-secondary py-10 text-secondary-foreground'>
       <div className='container flex items-center gap-5'>
-        <p>Follow me:</p>
+        <p>Подписывайтесь:</p>
         <ul className='flex items-center gap-5'>
           <li>
             <Link

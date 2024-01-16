@@ -6,6 +6,14 @@ import ReactPaginate from 'react-paginate';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Button, buttonVariants } from './ui/button';
 import { Icons } from './icons';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from './ui/select';
+import { Label } from './ui/label';
 
 const Pagination = ({ totalPages = 100 }: { totalPages: string | number }) => {
   const { push } = useRouter();
@@ -14,17 +22,16 @@ const Pagination = ({ totalPages = 100 }: { totalPages: string | number }) => {
   const activePage: number = params.get('page')
     ? Number(params.get('page'))
     : 0;
+  const pageSize: number = params.get('take') ? Number(params.get('take')) : 10;
 
-  const handleClick = ({ selected }: { selected: number }) => {
-    const value = selected + 1;
-
-    if (value) {
+  const handleClick = (selected: string, query: string) => {
+    if (selected) {
       const newParams = new URLSearchParams(params.toString());
 
-      if (value) {
-        newParams.set('page', String(value));
+      if (selected) {
+        newParams.set(query, String(selected));
       } else {
-        newParams.delete('page');
+        newParams.delete(query);
       }
 
       push(createUrl(pathname, newParams));
@@ -34,7 +41,7 @@ const Pagination = ({ totalPages = 100 }: { totalPages: string | number }) => {
   if (!totalPages && totalPages === 0) return null;
 
   return (
-    <div className='flex w-full justify-center'>
+    <div className='flex w-full justify-between gap-10'>
       <ReactPaginate
         pageClassName={buttonVariants({
           variant: 'ghost',
@@ -51,10 +58,10 @@ const Pagination = ({ totalPages = 100 }: { totalPages: string | number }) => {
             <span className='sr-only'>pagination-right-button</span>
           </Button>
         }
-        onPageChange={handleClick}
+        onPageChange={(e) => handleClick(String(e.selected + 1), 'page')}
         marginPagesDisplayed={1}
         pageRangeDisplayed={5}
-        pageCount={Number(Math.ceil(Number(totalPages) / 10))}
+        pageCount={Number(Math.ceil(Number(totalPages) / pageSize))}
         previousLabel={
           <Button size='sm' variant='secondary'>
             <Icons.chevronLeft size={20} />
@@ -63,6 +70,23 @@ const Pagination = ({ totalPages = 100 }: { totalPages: string | number }) => {
         }
         renderOnZeroPageCount={null}
       />
+      <div className='flex items-center gap-2'>
+        <Label>Количество постов:</Label>
+        <Select
+          defaultValue={String(pageSize)}
+          onValueChange={(e) => handleClick(e, 'take')}
+        >
+          <SelectTrigger className='w-auto'>
+            <SelectValue placeholder='Количество постов' />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value='10'>10</SelectItem>
+            <SelectItem value='20'>20</SelectItem>
+            <SelectItem value='50'>50</SelectItem>
+            <SelectItem value='100'>100</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 };

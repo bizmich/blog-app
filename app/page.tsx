@@ -1,5 +1,4 @@
 import BlogList from '@/components/blog/blog-list';
-import Pagination from '@/components/pagination';
 import SearchInput from '@/components/search-input';
 import Tags from '@/components/tag';
 
@@ -9,8 +8,6 @@ export default function Home() {
       <SearchInput />
       <Tags />
       <BlogList />
-      {/* У jsonplaceholder нету totalPageCount  */}
-      <Pagination totalPages={100} />
     </section>
   );
 }

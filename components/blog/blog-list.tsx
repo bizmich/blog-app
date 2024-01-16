@@ -7,14 +7,16 @@ import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
 import BlogItem from './blog-item';
 import { BlogCardSkeleton } from '../skeletons/blog-card-skeleton';
+import NoFound from '../no-found';
+import Pagination from '../pagination';
 
 const BlogList = () => {
-  const pageSize = 10;
   const params = useSearchParams();
   const page = params.get('page') ? Number(params.get('page')) : 1;
   const query = params.get('q') ? params.get('q')?.toString() : '';
+  const pageSize = params.get('take') ? Number(params.get('take')) : 10;
 
-  const { data, isLoading } = usePosts({
+  const { data, isLoading, error } = usePosts({
     page,
     pageSize,
   });
@@ -60,6 +62,24 @@ const BlogList = () => {
         {isLoading &&
           Array.from({ length: 8 }).map((_, i) => <BlogCardSkeleton key={i} />)}
       </div>
+      {error && (
+        <NoFound
+          title='Произошла ошибка'
+          description='Попробуйте обновить страницу'
+        />
+      )}
+      {memoisedFilteredPost.length === 0 && (
+        <NoFound
+          title='По вашему запросу ничего не найдено'
+          description='Попробуйте найти что то другое'
+        />
+      )}
+
+      {/* У jsonplaceholder нету totalPageCount  */}
+      {memoisedFilteredPost.length >= 10 &&
+        data &&
+        data.length >= 10 &&
+        !error && <Pagination totalPages={100} />}
     </div>
   );
 };

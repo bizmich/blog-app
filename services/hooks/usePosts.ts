@@ -10,7 +10,7 @@ export interface IPost {
 
 export default function usePosts(form: IPost) {
   return useQuery<Post[], Error>({
-    queryKey: ['posts', form.page],
+    queryKey: ['posts', form],
     queryFn: () =>
       apiService.getPost<Post[], IPost>({
         params: {
