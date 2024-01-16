@@ -41,7 +41,7 @@ const Pagination = ({ totalPages = 100 }: { totalPages: string | number }) => {
   if (!totalPages && totalPages === 0) return null;
 
   return (
-    <div className='flex w-full justify-between gap-10'>
+    <div className='flex w-full flex-wrap justify-center gap-10 md:justify-between'>
       <ReactPaginate
         pageClassName={buttonVariants({
           variant: 'ghost',
@@ -60,7 +60,7 @@ const Pagination = ({ totalPages = 100 }: { totalPages: string | number }) => {
         }
         onPageChange={(e) => handleClick(String(e.selected + 1), 'page')}
         marginPagesDisplayed={1}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={3}
         pageCount={Number(Math.ceil(Number(totalPages) / pageSize))}
         previousLabel={
           <Button size='sm' variant='secondary'>

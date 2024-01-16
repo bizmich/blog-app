@@ -31,9 +31,9 @@ export function BlogCardSkeleton({
         <Skeleton className='h-4 w-1/2' />
         <Skeleton className='h-4 w-1/6' />
       </CardContent>
-      <CardFooter className='flex flex-wrap space-x-2 p-4 pt-1'>
+      <CardFooter className='flex flex-wrap gap-2  p-4 pt-1'>
         {Array.from({ length: 8 }).map((_, i) => (
-          <Skeleton key={i} className='h-8 w-16 shrink-0 rounded-full' />
+          <Skeleton key={i} className='h-5 w-16 shrink-0 rounded-full' />
         ))}
       </CardFooter>
     </Card>
