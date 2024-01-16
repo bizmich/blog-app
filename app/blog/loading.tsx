@@ -1,5 +1,7 @@
+import BlogSlugPageSkeleton from '@/components/skeletons/blog-slug-page-skeleton';
+
 const Loading = () => {
-  return <div>Loading</div>;
+  return <BlogSlugPageSkeleton />;
 };
 
 export default Loading;
