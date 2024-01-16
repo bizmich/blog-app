@@ -1,0 +1,33 @@
+export const tags: string[][] = [
+  ['react', 'javascript', 'game', 'back-end'],
+  [
+    'react',
+    'javascript',
+    'node',
+    'fullstack',
+    'front-end',
+    'back-end',
+    'web',
+    'mvc',
+  ],
+  [
+    'react',
+    'javascript',
+    'react-native',
+    'front-end',
+    'mobile',
+    'android',
+    'ios',
+  ],
+  ['react', 'javascript', 'monaco', 'front-end'],
+  [
+    'react',
+    'javascript',
+    'ruby',
+    'front-end',
+    'back-end',
+    'fullstack',
+    'ruby-on-rails',
+    'mvc',
+  ],
+];

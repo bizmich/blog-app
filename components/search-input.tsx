@@ -33,6 +33,7 @@ const SearchInput = () => {
       <Icons.search size={35} />
       <input
         autoFocus
+        autoComplete='off'
         name='search'
         key={searchParams?.get('q')}
         defaultValue={searchParams?.get('q') || ''}

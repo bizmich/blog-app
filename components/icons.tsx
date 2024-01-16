@@ -1,4 +1,11 @@
-import { Search, Image, Moon, Sun } from 'lucide-react';
+import {
+  Search,
+  Image,
+  Moon,
+  Sun,
+  ChevronRight,
+  ChevronLeft,
+} from 'lucide-react';
 import React from 'react';
 
 type IconProps = React.HTMLAttributes<SVGElement>;
@@ -78,4 +85,6 @@ export const Icons = {
   search: Search,
   moon: Moon,
   sun: Sun,
+  chevronRight: ChevronRight,
+  chevronLeft: ChevronLeft,
 };
