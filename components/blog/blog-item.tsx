@@ -20,7 +20,7 @@ const BlogItem = ({ id, title, description, tags }: BlogItemProps) => {
       <Card className='h-full'>
         <CardHeader>
           <BlurredImage
-            ration={6 / 3}
+            ration={6 / 4}
             src={String(id)}
             width={326}
             height={142}

@@ -1,5 +1,12 @@
+import Link from 'next/link';
+import { Button } from './ui/button';
+
 const Logo = () => {
-  return <div className='text-3xl font-light'>Blogs</div>;
+  return (
+    <Button variant='ghost' asChild className='text-3xl font-light'>
+      <Link href='/'>Blogs</Link>
+    </Button>
+  );
 };
 
 export default Logo;

@@ -23,7 +23,7 @@ const BlurredImage = ({
         fill
         onLoad={() => setLoading(false)}
         alt={alt || ''}
-        className='rounded-lg'
+        className='rounded-lg object-cover object-center'
       />
       {loading && <PlaceholderImage isSkeleton ratio={ration} />}
     </AspectRatio>

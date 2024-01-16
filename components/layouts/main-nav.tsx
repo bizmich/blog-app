@@ -1,17 +1,10 @@
-import Link from 'next/link';
 import Logo from '../logo';
-import { Button } from '../ui/button';
 
 const MainNavigation = () => {
   return (
-    <div className='flex gap-5'>
+    <nav className='text-sm'>
       <Logo />
-      <nav className='text-sm'>
-        <Button asChild variant='ghost'>
-          <Link href='/'>Главное</Link>
-        </Button>
-      </nav>
-    </div>
+    </nav>
   );
 };
 
