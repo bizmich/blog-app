@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { apiService } from '../apiService';
 import { tags } from '@/config/tags';
+import { Post } from '@/types';
 
 export interface IPost {
   page: number;
@@ -8,10 +9,10 @@ export interface IPost {
 }
 
 export default function usePosts(form: IPost) {
-  return useQuery({
+  return useQuery<Post[], Error>({
     queryKey: ['posts', form.page],
     queryFn: () =>
-      apiService.getPost({
+      apiService.getPost<Post[], IPost>({
         params: {
           _start: (form.page - 1) * form.pageSize,
           _limit: form.pageSize,

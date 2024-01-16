@@ -1,4 +1,3 @@
-import { Post } from '@/types';
 import APIClient from './apiClient';
 
-export const apiService = new APIClient<Post[]>();
+export const apiService = new APIClient();

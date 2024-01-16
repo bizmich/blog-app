@@ -8,11 +8,12 @@ import { siteConfig } from '@/config/site';
 import SiteHeader from '@/components/layouts/site-header';
 import SiteFooter from '@/components/layouts/site-footer';
 import { cn } from '@/lib/utils';
+import { env } from '@/lib/env.mjs';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://blog-app-alif.vercel.app/'),
+  metadataBase: new URL(env.NEXT_PUBLIC_API_BASE_URL),
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,

@@ -19,3 +19,11 @@ export const createUrl = (
 export function truncate(str: string, length: number) {
   return str.length > length ? `${str.substring(0, length)}...` : str;
 }
+
+export const getImageUrl = (
+  id: number | string,
+  width: string | number = 326,
+  height: string | number = 142
+): string => {
+  return `https://via.assets.so/game.png?id=${id}&q=95&w=${width}&h=${height}&fit=cover`;
+};
