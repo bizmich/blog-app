@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 
 import { useMemo } from 'react';
 import BlogItem from './blog-item';
+import { BlogCardSkeleton } from '../skeletons/blog-card-skeleton';
 
 const BlogList = () => {
   const pageSize = 10;
@@ -13,7 +14,7 @@ const BlogList = () => {
   const page = params.get('page') ? Number(params.get('page')) : 1;
   const query = params.get('q') ? params.get('q')?.toString() : '';
 
-  const { data } = usePosts({
+  const { data, isLoading } = usePosts({
     page,
     pageSize,
   });
@@ -56,6 +57,8 @@ const BlogList = () => {
               title={pos.title}
             />
           ))}
+        {isLoading &&
+          Array.from({ length: 8 }).map((_, i) => <BlogCardSkeleton key={i} />)}
       </div>
     </div>
   );

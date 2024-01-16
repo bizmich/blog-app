@@ -12,7 +12,7 @@ const Tags = () => {
     : [];
 
   return (
-    <div className='flex w-full items-center justify-between gap-2 py-5'>
+    <div className='flex w-full flex-col items-center justify-between gap-2 py-5 md:flex-row'>
       <div className='flex flex-wrap gap-2'>
         {tagParams &&
           tagParams.map((tag) => (
@@ -32,10 +32,11 @@ const Tags = () => {
           <Button
             onClick={clearAllTags}
             variant='outline'
-            className='gap-2 rounded-full px-3'
+            size='sm'
+            className='gap-2 rounded-full border-primary px-2 py-1 text-xs'
           >
-            <XCircle className='size-5' />
             Очистить теги
+            <XCircle className='size-5' />
           </Button>
         </div>
       )}
