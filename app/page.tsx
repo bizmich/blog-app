@@ -1,9 +1,9 @@
-import { Button } from '@/components/ui/button';
+import SearchInput from '@/components/search-input';
 
 export default function Home() {
   return (
-    <section>
-      <Button>Text</Button>
+    <section className='container py-10'>
+      <SearchInput />
     </section>
   );
 }
