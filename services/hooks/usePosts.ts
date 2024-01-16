@@ -26,5 +26,7 @@ export default function usePosts(form: IPost) {
       });
     },
     refetchOnWindowFocus: false,
+    retryOnMount: false,
+    refetchIntervalInBackground: false,
   });
 }

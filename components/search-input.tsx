@@ -28,9 +28,9 @@ const SearchInput = () => {
   return (
     <form
       onSubmit={onSubmit}
-      className='flex items-center gap-5 rounded-full border border-primary py-4 pl-10 pr-5 ring-black transition-all duration-200  has-[:focus]:ring-2'
+      className='flex items-center gap-2 rounded-full border border-primary px-5 py-4 ring-black transition-all duration-200 has-[:focus]:ring-2 xl:gap-5 xl:pl-10'
     >
-      <Icons.search size={35} />
+      <Icons.search size={35} className='box-content' />
       <input
         autoFocus
         autoComplete='off'
@@ -38,13 +38,13 @@ const SearchInput = () => {
         key={searchParams?.get('q')}
         defaultValue={searchParams?.get('q') || ''}
         type='text'
-        className='w-full appearance-none bg-background text-2xl font-normal text-foreground focus-visible:outline-none active:border-0 '
+        className='w-full appearance-none bg-background text-sm font-normal text-foreground focus-visible:outline-none active:border-0 xl:text-2xl '
         placeholder='Найти по имени'
       />
       <Button
         type='submit'
         variant='outline'
-        className='gap-2 rounded-full border-primary px-14 py-6'
+        className='gap-2 rounded-full border-primary xl:px-14 xl:py-6'
       >
         Найти
         <ArrowRight size={18} />

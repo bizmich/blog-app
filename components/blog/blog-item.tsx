@@ -1,7 +1,8 @@
 import useTags from '@/hooks/useTags';
 import { truncate } from '@/lib/utils';
 import { BlogItemProps } from '@/types';
-import Image from 'next/image';
+import Link from 'next/link';
+import BlurredImage from '../blurred-image';
 import { Badge } from '../ui/badge';
 import {
   Card,
@@ -11,20 +12,18 @@ import {
   CardHeader,
   CardTitle,
 } from '../ui/card';
-import Link from 'next/link';
 
 const BlogItem = ({ id, title, description, tags }: BlogItemProps) => {
   const { handleSetTagsToParams } = useTags();
   return (
     <Link href={`/blog/${id}`}>
-      <Card>
+      <Card className='h-full'>
         <CardHeader>
-          <Image
-            src={`https://via.assets.so/game.png?id=${id}&q=95&w=326&h=142&fit=cover`}
-            alt='image-placeholder'
+          <BlurredImage
+            ration={6 / 3}
+            src={String(id)}
             width={326}
-            height={150}
-            className='rounded-md'
+            height={142}
           />
         </CardHeader>
         <CardContent>

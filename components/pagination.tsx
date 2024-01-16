@@ -48,6 +48,7 @@ const Pagination = ({ totalPages = 100 }: { totalPages: string | number }) => {
         nextLabel={
           <Button size='sm' variant='secondary'>
             <Icons.chevronRight size={20} />
+            <span className='sr-only'>pagination-right-button</span>
           </Button>
         }
         onPageChange={handleClick}
@@ -57,6 +58,7 @@ const Pagination = ({ totalPages = 100 }: { totalPages: string | number }) => {
         previousLabel={
           <Button size='sm' variant='secondary'>
             <Icons.chevronLeft size={20} />
+            <span className='sr-only'>pagination-left-button</span>
           </Button>
         }
         renderOnZeroPageCount={null}

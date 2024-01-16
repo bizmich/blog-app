@@ -9,22 +9,42 @@ const SiteFooter = () => {
         <p>Follow me:</p>
         <ul className='flex items-center gap-5'>
           <li>
-            <Link target='_blank' href={siteConfig.links.github}>
+            <Link
+              aria-label='github'
+              rel='noopener'
+              target='_blank'
+              href={siteConfig.links.github}
+            >
               <Icons.gitHub className='size-6' />
             </Link>
           </li>
           <li>
-            <Link target='_blank' href={siteConfig.links.twitter}>
+            <Link
+              aria-label='twitter'
+              rel='noopener'
+              target='_blank'
+              href={siteConfig.links.twitter}
+            >
               <Icons.twitter className='size-6' />
             </Link>
           </li>
           <li>
-            <Link target='_blank' href={siteConfig.links.discord}>
+            <Link
+              aria-label='discord'
+              rel='noopener'
+              target='_blank'
+              href={siteConfig.links.discord}
+            >
               <Icons.discord className='size-6' />
             </Link>
           </li>
           <li>
-            <Link target='_blank' href={siteConfig.links.linkedin}>
+            <Link
+              aria-label='linkedin'
+              rel='noopener'
+              target='_blank'
+              href={siteConfig.links.linkedin}
+            >
               <Icons.linkedin className='size-6' />
             </Link>
           </li>
