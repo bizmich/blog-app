@@ -1,4 +1,5 @@
 import { Search, Image, Moon, Sun } from 'lucide-react';
+import React from 'react';
 
 type IconProps = React.HTMLAttributes<SVGElement>;
 
