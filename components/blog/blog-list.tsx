@@ -4,21 +4,21 @@ import usePosts from '@/services/hooks/usePosts';
 import { Post } from '@/types';
 import { useSearchParams } from 'next/navigation';
 
-import { useMemo } from 'react';
-import BlogItem from './blog-item';
-import { BlogCardSkeleton } from '../skeletons/blog-card-skeleton';
+import React, { useCallback, useMemo } from 'react';
 import NoFound from '../no-found';
 import Pagination from '../pagination';
+import { BlogCardSkeleton } from '../skeletons/blog-card-skeleton';
+import BlogItem from './blog-item';
 
 const BlogList = () => {
-  const params = useSearchParams();
-  const page = params.get('page') ? Number(params.get('page')) : 1;
-  const query = params.get('q') ? params.get('q')?.toString() : '';
-  const pageSize = params.get('take') ? Number(params.get('take')) : 10;
+  const searchParams = useSearchParams();
+  const query = searchParams.get('q') ?? '';
+  const page = searchParams.get('page') ?? '1';
+  const perPage = searchParams?.get('per_page') ?? '10';
 
   const { data, isLoading, error } = usePosts({
+    perPage,
     page,
-    pageSize,
   });
 
   const filterPosts = (
@@ -36,12 +36,27 @@ const BlogList = () => {
   };
 
   const memoisedFilteredPost = useMemo(() => {
-    const tagParams = params.get('tag')
-      ? params.get('tag')?.toString()?.split(',')
-      : [];
+    const tagParams = searchParams.get('tag')?.toString()?.split(',') ?? [];
 
     return data ? filterPosts(data, query, tagParams!) : [];
-  }, [data, query, params]);
+  }, [data, query, searchParams]);
+
+  const createQueryString = useCallback(
+    (params: Record<string, string | number | null>) => {
+      const newSearchParams = new URLSearchParams();
+
+      for (const [key, value] of Object.entries(params)) {
+        if (value === null) {
+          newSearchParams.delete(key);
+        } else {
+          newSearchParams.set(key, String(value));
+        }
+      }
+
+      return newSearchParams.toString();
+    },
+    []
+  );
 
   return (
     <div>
@@ -77,7 +92,12 @@ const BlogList = () => {
 
       {/* У jsonplaceholder нету totalPageCount  */}
       {memoisedFilteredPost.length >= 10 && !isLoading && !error && (
-        <Pagination totalPages={100} />
+        <Pagination
+          pageCount={100}
+          page={page}
+          perPage={perPage}
+          createQueryString={createQueryString}
+        />
       )}
     </div>
   );

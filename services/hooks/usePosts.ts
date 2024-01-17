@@ -4,8 +4,8 @@ import { tags } from '@/config/tags';
 import { Post } from '@/types';
 
 export interface IPost {
-  page: number;
-  pageSize: number;
+  perPage: string;
+  page: string;
 }
 
 export default function usePosts(form: IPost) {
@@ -14,8 +14,8 @@ export default function usePosts(form: IPost) {
     queryFn: () =>
       apiService.getPost<Post[], IPost>({
         params: {
-          _start: (form.page - 1) * form.pageSize,
-          _limit: form.pageSize,
+          _start: (Number(form.page) - 1) * Number(form.perPage),
+          _limit: form.perPage,
         },
       }),
     select: (data) => {

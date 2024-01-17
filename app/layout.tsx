@@ -9,6 +9,7 @@ import SiteHeader from '@/components/layouts/site-header';
 import SiteFooter from '@/components/layouts/site-footer';
 import { cn } from '@/lib/utils';
 import { env } from '@/lib/env.mjs';
+import BackToTop from '@/components/back-to-top';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -70,6 +71,7 @@ export default function RootLayout({
             <SiteHeader />
             <main className='min-h-full flex-auto'>{children}</main>
             <SiteFooter />
+            <BackToTop />
           </ThemeProvider>
         </body>
       </ReactQueryProvider>
