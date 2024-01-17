@@ -46,7 +46,7 @@ const BlogItem = ({ id, title, description, tags }: BlogItemProps) => {
               className='cursor-pointer'
               key={tag}
             >
-              {tag}{' '}
+              {tag}
             </Badge>
           ))}
         </CardFooter>

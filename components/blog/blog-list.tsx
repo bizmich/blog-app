@@ -36,9 +36,11 @@ const BlogList = () => {
   };
 
   const memoisedFilteredPost = useMemo(() => {
-    const tagParams = searchParams.get('tag')?.toString()?.split(',') ?? [];
+    const tagParams = searchParams.get('tag')
+      ? searchParams.get('tag')?.toString()?.split(',')
+      : [];
 
-    return data ? filterPosts(data, query, tagParams!) : [];
+    return data && tagParams ? filterPosts(data, query, tagParams) : [];
   }, [data, query, searchParams]);
 
   const createQueryString = useCallback(

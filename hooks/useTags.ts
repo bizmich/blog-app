@@ -26,7 +26,6 @@ const useTags = () => {
 
     newParams.set('tag', output.join(','));
 
-    console.log('output:', output);
     pushUrlWithParams(newParams);
   }
 
@@ -36,10 +35,14 @@ const useTags = () => {
     if (output.includes(tag)) {
       output = output.filter((el) => el !== tag);
 
-      newParams.set('tag', output.length > 0 ? output.join(',') : '');
-    }
+      if (output.length === 0) {
+        newParams.delete('tag');
+      } else {
+        newParams.set('tag', output.join(','));
+      }
 
-    pushUrlWithParams(newParams);
+      pushUrlWithParams(newParams);
+    }
   }
 
   function clearAllTags() {
