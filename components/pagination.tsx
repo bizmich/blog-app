@@ -4,8 +4,9 @@ import { createUrl } from '@/lib/utils';
 import ReactPaginate from 'react-paginate';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Button, buttonVariants } from './ui/button';
 import { Icons } from './icons';
+import { Button, buttonVariants } from './ui/button';
+import { Label } from './ui/label';
 import {
   Select,
   SelectContent,
@@ -13,7 +14,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from './ui/select';
-import { Label } from './ui/label';
 
 const Pagination = ({ totalPages = 100 }: { totalPages: string | number }) => {
   const { push } = useRouter();

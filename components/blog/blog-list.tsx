@@ -68,7 +68,7 @@ const BlogList = () => {
           description='Попробуйте обновить страницу'
         />
       )}
-      {memoisedFilteredPost.length === 0 && (
+      {memoisedFilteredPost.length === 0 && !isLoading && !error && (
         <NoFound
           title='По вашему запросу ничего не найдено'
           description='Попробуйте найти что то другое'
@@ -76,10 +76,9 @@ const BlogList = () => {
       )}
 
       {/* У jsonplaceholder нету totalPageCount  */}
-      {memoisedFilteredPost.length >= 10 &&
-        data &&
-        data.length >= 10 &&
-        !error && <Pagination totalPages={100} />}
+      {memoisedFilteredPost.length >= 10 && !isLoading && !error && (
+        <Pagination totalPages={100} />
+      )}
     </div>
   );
 };
