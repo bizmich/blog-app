@@ -9,9 +9,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import type { IDialogState } from '@/types';
-import { Settings } from 'lucide-react';
+import { Pencil, Settings } from 'lucide-react';
 import { useState } from 'react';
 import { DestroyBlog } from '../destroy';
+import { UpdateBlogFormDialog } from '../update';
+import { getFormattedDateFromTimestamp } from '@/lib/utils';
 
 export const ShowBlog = ({ data }: { data: IBlog }) => {
   const [open, setOpen] = useState<IDialogState>('closed');
@@ -31,16 +33,24 @@ export const ShowBlog = ({ data }: { data: IBlog }) => {
   return (
     <div className="pt-10">
       <div className="container py-8">
-        <div className="mb-2 flex justify-end">
+        <div className="mb-2 flex justify-between">
+          <p className="text-muted-foreground">
+            {getFormattedDateFromTimestamp(data?.createdAt)}
+          </p>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="secondary">
-                <Settings className="size-4" />
-                Edit
+              <Button variant="ghost" size="sm">
+                <Pencil className="mr-2 h-4 w-4" /> Edit
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>Update</DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  onSelected({ action: 'update', data: String(data) });
+                }}
+              >
+                Update
+              </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => {
                   onSelected({ action: 'destroy', data: String(data.id) });
@@ -53,10 +63,13 @@ export const ShowBlog = ({ data }: { data: IBlog }) => {
         </div>
         <div className="relative overflow-hidden rounded-md">
           <BlurredImage
+            alt={data?.title ?? 'wallpaper'}
             ration={16 / 6}
             width={940}
             height={480}
             src={String(data.id)}
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 326px"
+            priority
           />
         </div>
       </div>
@@ -76,6 +89,10 @@ export const ShowBlog = ({ data }: { data: IBlog }) => {
         open={open === 'destroy'}
         setOpen={() => setOpen('closed')}
         id={item as string}
+      />
+      <UpdateBlogFormDialog
+        open={open === 'update'}
+        setOpen={() => setOpen('closed')}
       />
     </div>
   );

@@ -9,8 +9,10 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import type { IDestroyBlogProps } from './types';
+import { useDestroyBlog } from './services';
 
-export const DestroyBlog = ({ open, setOpen }: IDestroyBlogProps) => {
+export const DestroyBlog = ({ open, setOpen, id }: IDestroyBlogProps) => {
+  const destroyBlog = useDestroyBlog();
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogContent>
@@ -23,7 +25,9 @@ export const DestroyBlog = ({ open, setOpen }: IDestroyBlogProps) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Delete</AlertDialogAction>
+          <AlertDialogAction onClick={() => destroyBlog.mutate(id)}>
+            Delete
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

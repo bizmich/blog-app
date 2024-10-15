@@ -14,10 +14,15 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { BlogSchema } from './schema';
-import { useStoreBlog } from './services';
-import type { IStoreBlogFormProps } from './types';
+import { useShowBlog, useUpdateBlog } from './services';
+import type { IUpdateBlogFormProps } from './types';
+import { useParams } from 'next/navigation';
+import { use, useEffect } from 'react';
 
-export const StoreBlogForm = ({ setOpen }: IStoreBlogFormProps) => {
+export const UpdateBlogForm = ({ setOpen }: IUpdateBlogFormProps) => {
+  const { id } = useParams<{ id: string }>();
+  const { data } = useShowBlog(id);
+
   const form = useForm<z.infer<typeof BlogSchema>>({
     resolver: zodResolver(BlogSchema),
     defaultValues: {
@@ -26,20 +31,29 @@ export const StoreBlogForm = ({ setOpen }: IStoreBlogFormProps) => {
     },
   });
 
-  const storeBlog = useStoreBlog();
+  const updateBlog = useUpdateBlog(id);
 
   const onCloseDialog = () => {
     setOpen(false);
   };
 
   function onSubmit(data: z.infer<typeof BlogSchema>) {
-    storeBlog.mutate(data, {
+    updateBlog.mutate(data, {
       onSuccess: () => {
         form.reset();
         onCloseDialog();
       },
     });
   }
+
+  useEffect(() => {
+    if (data) {
+      form.reset({
+        description: data.description,
+        title: data.title,
+      });
+    }
+  }, [data]);
 
   return (
     <Form {...form}>

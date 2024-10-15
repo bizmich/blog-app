@@ -68,3 +68,28 @@ export const snakeToCamel = (data: any): any => {
 
   return convertToCamelCase(data);
 };
+
+export function getFormattedDateFromTimestamp(timestamp: string, locale = 'en-US') {
+  try {
+    // Create a Date object from the timestamp
+    const date = new Date(timestamp);
+
+    // Check if the date is valid
+    if (isNaN(date.getTime())) {
+      throw new Error('Invalid timestamp');
+    }
+
+    // Use Intl.DateTimeFormat to format the date
+    const options: Record<string, string> = {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    };
+    const formattedDate = new Intl.DateTimeFormat(locale, options).format(date);
+
+    return formattedDate;
+  } catch (error: any) {
+    console.error(`Error formatting date: ${error.message}`);
+    return null;
+  }
+}

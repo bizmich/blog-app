@@ -46,7 +46,7 @@ const SiteHeader = () => {
       <div className="flex items-center justify-center gap-2">
         <Button onClick={() => setOpen('store')} variant="ghost">
           <Plus className="size-4" />
-          Add blog
+          Add
         </Button>
         <ModeToggle />
       </div>
