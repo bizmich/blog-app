@@ -2,7 +2,7 @@ import Logo from '../logo';
 
 const MainNavigation = () => {
   return (
-    <nav className='text-sm'>
+    <nav className="text-sm">
       <Logo />
     </nav>
   );

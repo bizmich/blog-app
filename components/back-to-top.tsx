@@ -29,7 +29,7 @@ const BackToTop = () => {
       {isBackTop ? (
         <Button
           onClick={backToTop}
-          className='fixed bottom-14 right-5 top-auto z-40 '
+          className="fixed bottom-14 right-5 top-auto z-40"
         >
           <Icons.backToTop />
         </Button>

@@ -53,23 +53,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='ru' suppressHydrationWarning>
+    <html lang="ru" suppressHydrationWarning>
       <head />
       <ReactQueryProvider>
         <body
           className={cn(
-            'min-h-screen flex flex-col justify-between antialiased',
-            inter.className
+            'flex min-h-screen flex-col justify-between antialiased',
+            inter.className,
           )}
         >
           <ThemeProvider
-            attribute='class'
-            defaultTheme='system'
+            attribute="class"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
             <SiteHeader />
-            <main className='min-h-full flex-auto'>{children}</main>
+            <main className="min-h-full flex-auto">{children}</main>
             <SiteFooter />
             <BackToTop />
           </ThemeProvider>

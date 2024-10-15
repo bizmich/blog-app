@@ -27,17 +27,17 @@ export function PlaceholderImage({
       className={cn('overflow-hidden rounded-lg', className)}
     >
       <Skeleton
-        aria-label='Placeholder'
-        role='img'
-        aria-roledescription='placeholder'
+        aria-label="Placeholder"
+        role="img"
+        aria-roledescription="placeholder"
         className={cn(
           'flex h-full w-full items-center justify-center',
-          isSkeleton ? 'animate-pulse' : 'animate-none'
+          isSkeleton ? 'animate-pulse' : 'animate-none',
         )}
       >
         <Icons.placeholder
-          className='size-9 text-muted-foreground'
-          aria-hidden='true'
+          className="size-9 text-muted-foreground"
+          aria-hidden="true"
         />
       </Skeleton>
     </Comp>

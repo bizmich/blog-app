@@ -63,56 +63,56 @@ export function PaginationButton({
     <div
       className={cn(
         'flex flex-wrap items-center justify-center gap-2',
-        className
+        className,
       )}
       {...props}
     >
       <Button
-        aria-label='Go to first page'
-        variant='outline'
-        size='icon'
-        className='hidden size-8 lg:flex'
+        aria-label="Go to first page"
+        variant="outline"
+        size="icon"
+        className="hidden size-8 lg:flex"
         onClick={() => {
           startTransition(() => {
             router.push(
               `/?${createQueryString({
                 page: 1,
                 per_page: perPage ?? null,
-              })}`
+              })}`,
             );
           });
         }}
         disabled={Number(page) === 1 || isPending}
       >
-        <ChevronsLeft className='size-4' aria-hidden='true' />
+        <ChevronsLeft className="size-4" aria-hidden="true" />
       </Button>
       <Button
-        aria-label='Go to previous page'
-        variant='outline'
-        size='icon'
-        className='size-8'
+        aria-label="Go to previous page"
+        variant="outline"
+        size="icon"
+        className="size-8"
         onClick={() => {
           startTransition(() => {
             router.push(
               `/?${createQueryString({
                 page: Number(page) - 1,
                 per_page: perPage ?? null,
-              })}`
+              })}`,
             );
           });
         }}
         disabled={Number(page) === 1 || isPending}
       >
-        <ChevronLeftIcon className='size-4' aria-hidden='true' />
+        <ChevronLeftIcon className="size-4" aria-hidden="true" />
       </Button>
       {paginationRange.map((pageNumber, i) =>
         pageNumber === '...' ? (
           <Button
-            aria-label='Page separator'
+            aria-label="Page separator"
             key={i}
-            variant='outline'
-            size='icon'
-            className='size-8'
+            variant="outline"
+            size="icon"
+            className="size-8"
             disabled
           >
             ...
@@ -122,15 +122,15 @@ export function PaginationButton({
             aria-label={`Page ${pageNumber}`}
             key={i}
             variant={Number(page) === pageNumber ? 'default' : 'outline'}
-            size='icon'
-            className='size-8'
+            size="icon"
+            className="size-8"
             onClick={() => {
               startTransition(() => {
                 router.push(
                   `/?${createQueryString({
                     page: pageNumber,
                     per_page: perPage ?? null,
-                  })}`
+                  })}`,
                 );
               });
             }}
@@ -138,43 +138,43 @@ export function PaginationButton({
           >
             {pageNumber}
           </Button>
-        )
+        ),
       )}
       <Button
-        aria-label='Go to next page'
-        variant='outline'
-        size='icon'
-        className='size-8'
+        aria-label="Go to next page"
+        variant="outline"
+        size="icon"
+        className="size-8"
         onClick={() => {
           startTransition(() => {
             router.push(
               `/?${createQueryString({
                 page: Number(page) + 1,
                 per_page: perPage ?? null,
-              })}`
+              })}`,
             );
           });
         }}
         disabled={Number(page) === (pageCount ?? 10) || isPending}
       >
-        <ChevronRightIcon className='size-4' aria-hidden='true' />
+        <ChevronRightIcon className="size-4" aria-hidden="true" />
       </Button>
       <Button
-        aria-label='Go to last page'
-        variant='outline'
-        size='icon'
-        className='hidden size-8 lg:flex'
+        aria-label="Go to last page"
+        variant="outline"
+        size="icon"
+        className="hidden size-8 lg:flex"
         onClick={() => {
           router.push(
             `/?${createQueryString({
               page: pageCount ?? 10,
               per_page: perPage ?? null,
-            })}`
+            })}`,
           );
         }}
         disabled={Number(page) === (pageCount ?? 10) || isPending}
       >
-        <ChevronsRight className='size-4' aria-hidden='true' />
+        <ChevronsRight className="size-4" aria-hidden="true" />
       </Button>
     </div>
   );

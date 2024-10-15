@@ -3,12 +3,13 @@ import { ArrowRight } from 'lucide-react';
 import { Icons } from './icons';
 import { Button } from './ui/button';
 import { useRouter, useSearchParams } from 'next/navigation';
-import React from 'react';
+import React, { useRef } from 'react';
 import { createUrl } from '@/lib/utils';
 
 const SearchInput = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const ref = useRef<HTMLInputElement>(null);
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -28,27 +29,37 @@ const SearchInput = () => {
   return (
     <form
       onSubmit={onSubmit}
-      className='flex items-center gap-2 rounded-full border border-primary px-5 py-4 ring-black transition-all duration-200 has-[:focus]:ring-2 xl:gap-5 xl:pl-8'
+      className="relative flex w-full items-center justify-between overflow-hidden rounded-full border border-primary ring-primary has-[:focus]:ring-[1px]"
     >
-      <Icons.search size={35} className='box-content' />
+      <div className="absolute inset-y-0 left-0 z-10 flex items-center justify-center px-4">
+        <Icons.search
+          onClick={() => {
+            ref.current?.focus();
+          }}
+          className="box-content size-7 stroke-1"
+        />
+      </div>
       <input
+        ref={ref}
         autoFocus
-        autoComplete='off'
-        name='search'
+        autoComplete="off"
+        name="search"
         key={searchParams?.get('q')}
         defaultValue={searchParams?.get('q') || ''}
-        type='search'
-        className='w-full appearance-none bg-background text-sm font-normal text-foreground focus-visible:outline-none active:border-0 xl:text-2xl '
-        placeholder='Найти по имени'
+        type="search"
+        className="h-16 w-full appearance-none bg-background px-14 text-sm font-normal text-foreground focus-visible:outline-none active:border-0 xl:text-2xl"
+        placeholder="Найти по имени"
       />
-      <Button
-        type='submit'
-        variant='outline'
-        className='gap-2 rounded-full border-primary xl:px-14 xl:py-6'
-      >
-        Найти
-        <ArrowRight size={18} />
-      </Button>
+      <div className="absolute inset-y-0 right-0 z-10 flex items-center justify-center pr-4">
+        <Button
+          type="submit"
+          variant="outline"
+          className="gap-2 rounded-full border-primary xl:px-14 xl:py-6"
+        >
+          Найти
+          <ArrowRight size={18} />
+        </Button>
+      </div>
     </form>
   );
 };

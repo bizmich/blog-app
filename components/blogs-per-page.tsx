@@ -35,20 +35,20 @@ const BlogsPerPage = () => {
     }
   };
   return (
-    <div className='flex items-center gap-2'>
+    <div className="flex items-center gap-2">
       <Label>Количество постов:</Label>
       <Select
         defaultValue={String(perPage)}
         onValueChange={(e) => handleClick(e, 'per_page')}
       >
-        <SelectTrigger className='w-auto'>
-          <SelectValue placeholder='Количество постов' />
+        <SelectTrigger className="w-auto">
+          <SelectValue placeholder="Количество постов" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value='10'>10</SelectItem>
-          <SelectItem value='20'>20</SelectItem>
-          <SelectItem value='50'>50</SelectItem>
-          <SelectItem value='100'>100</SelectItem>
+          <SelectItem value="10">10</SelectItem>
+          <SelectItem value="20">20</SelectItem>
+          <SelectItem value="50">50</SelectItem>
+          <SelectItem value="100">100</SelectItem>
         </SelectContent>
       </Select>
     </div>

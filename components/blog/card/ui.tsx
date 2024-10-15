@@ -1,9 +1,8 @@
 import useTags from '@/hooks/useTags';
 import { truncate } from '@/lib/utils';
-import { BlogItemProps } from '@/types';
 import Link from 'next/link';
-import BlurredImage from '../blurred-image';
-import { Badge } from '../ui/badge';
+import BlurredImage from '../../blurred-image';
+import { Badge } from '../../ui/badge';
 import {
   Card,
   CardContent,
@@ -11,13 +10,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '../ui/card';
+} from '../../ui/card';
+import type { IBlogCardProps } from './types';
 
-const BlogItem = ({ id, title, description, tags }: BlogItemProps) => {
+const BlogItem = ({ id, title, description, tags }: IBlogCardProps) => {
   const { handleSetTagsToParams } = useTags();
   return (
     <Link href={`/blog/${id}`}>
-      <Card className='h-full'>
+      <Card className="h-full">
         <CardHeader>
           <BlurredImage
             ration={6 / 4}
@@ -28,7 +28,7 @@ const BlogItem = ({ id, title, description, tags }: BlogItemProps) => {
         </CardHeader>
         <CardContent>
           <CardTitle>{truncate(title, 20)}</CardTitle>
-          <CardDescription className='py-4'>
+          <CardDescription className="py-4">
             {truncate(description, 18)}
           </CardDescription>
         </CardContent>
@@ -37,16 +37,16 @@ const BlogItem = ({ id, title, description, tags }: BlogItemProps) => {
             e.stopPropagation();
             e.nativeEvent.preventDefault();
           }}
-          className='flex  flex-wrap gap-2 text-balance'
+          className="flex flex-wrap gap-2 text-balance"
         >
           {tags.map((tag) => (
             <Badge
-              onClick={() => handleSetTagsToParams(tag)}
-              variant='secondary'
-              className='cursor-pointer'
-              key={tag}
+              onClick={() => handleSetTagsToParams(tag.name)}
+              variant="secondary"
+              className="cursor-pointer"
+              key={tag.name}
             >
-              {tag}
+              {tag.name}
             </Badge>
           ))}
         </CardFooter>

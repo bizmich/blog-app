@@ -17,13 +17,13 @@ const BlurredImage = ({
 }: BlurredImageProps) => {
   const [loading, setLoading] = useState(true);
   return (
-    <AspectRatio ratio={ration} className='relative'>
+    <AspectRatio ratio={ration} className="relative">
       <Image
         src={src ? getImageUrl(src, width, height) : ''}
         fill
         onLoad={() => setLoading(false)}
         alt={alt || ''}
-        className='rounded-lg object-cover object-center'
+        className="rounded-lg object-cover object-center"
       />
       {loading && <PlaceholderImage isSkeleton ratio={ration} />}
     </AspectRatio>

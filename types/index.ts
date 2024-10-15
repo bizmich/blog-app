@@ -6,9 +6,14 @@ export interface Post {
   tags: string[];
 }
 
-export interface BlogItemProps {
-  id: number | string;
-  title: string;
-  description: string;
-  tags: string[];
+export interface IStateController {
+  open: boolean;
+  setOpen: (state: boolean) => void;
 }
+export type IDialogState =
+  | 'update'
+  | 'destroy'
+  | 'store'
+  | 'changePassword'
+  | 'closed'
+  | 'termination';
