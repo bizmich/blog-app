@@ -20,6 +20,7 @@ const BlogItem = ({ id, title, description, tags }: IBlogCardProps) => {
       <Card className="h-full">
         <CardHeader>
           <BlurredImage
+            alt={title}
             ration={6 / 4}
             src={String(id)}
             width={326}

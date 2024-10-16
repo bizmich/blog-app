@@ -1,15 +1,14 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
 import ReactQueryProvider from '@/components/providers/react-query-provider';
 import { ThemeProvider } from '@/components/providers/theme-provider';
-import React from 'react';
 import { siteConfig } from '@/config/site';
-import SiteHeader from '@/components/layouts/site-header';
-import SiteFooter from '@/components/layouts/site-footer';
-import { cn } from '@/lib/utils';
 import { env } from '@/lib/env.mjs';
-import BackToTop from '@/components/back-to-top';
+import { cn } from '@/lib/utils';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import React from 'react';
+import './globals.css';
+import { Providers } from '@/components/providers/session-provider';
+import { Toaster } from '@/components/ui/sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -55,26 +54,26 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <head />
-      <ReactQueryProvider>
-        <body
-          className={cn(
-            'flex min-h-screen flex-col justify-between antialiased',
-            inter.className,
-          )}
-        >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
+      <Providers>
+        <ReactQueryProvider>
+          <body
+            className={cn(
+              'flex min-h-screen flex-col justify-between antialiased',
+              inter.className,
+            )}
           >
-            <SiteHeader />
-            <main className="min-h-full flex-auto">{children}</main>
-            <SiteFooter />
-            <BackToTop />
-          </ThemeProvider>
-        </body>
-      </ReactQueryProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <main className="min-h-full flex-auto">{children}</main>
+            </ThemeProvider>
+            <Toaster />
+          </body>
+        </ReactQueryProvider>
+      </Providers>
     </html>
   );
 }

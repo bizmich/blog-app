@@ -1,6 +1,7 @@
 import { axiosInstance } from '@/services/axiosInstance';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import type { IShowBlogFormTypes } from './types';
+import { toast } from 'sonner';
 
 export const useShowBlog = (id: string) => {
   return useQuery<IShowBlogFormTypes>({
@@ -19,6 +20,11 @@ export const useUpdateBlog = (id: string) => {
         .then((response) => response.data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['blogs'] });
+    },
+    onError: (error) => {
+      console.log('error:', error);
+
+      toast.error(error.message);
     },
   });
 };

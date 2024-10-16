@@ -1,3 +1,8 @@
+export interface IBlogFetchResponseProps {
+  data: IBlog[];
+  total: number;
+}
+
 export interface IBlog {
   id: number;
   title: string;

@@ -12,7 +12,7 @@ export const BlogList = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') ?? '';
   const page = searchParams.get('page') ?? '1';
-  const perPage = searchParams?.get('per_page') ?? '20';
+  const perPage = searchParams?.get('per_page') ?? '10';
 
   const { data, isLoading, error } = useBlog({
     perPage,
@@ -41,7 +41,7 @@ export const BlogList = () => {
     <div>
       <div className="my-8 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {data &&
-          data?.map((blog) => (
+          data?.data.map((blog) => (
             <BlogItem
               key={blog.id}
               description={blog.description}
@@ -59,7 +59,7 @@ export const BlogList = () => {
           description="Попробуйте обновить страницу"
         />
       )}
-      {data?.length === 0 && !isLoading && !error && (
+      {data?.data.length === 0 && !isLoading && !error && (
         <NoFound
           title="По вашему запросу ничего не найдено"
           description="Попробуйте найти что то другое"
@@ -67,9 +67,9 @@ export const BlogList = () => {
       )}
 
       {/* У jsonplaceholder нету totalPageCount  */}
-      {data && data?.length >= Number(perPage) && !isLoading && !error && (
+      {data && data?.total >= Number(perPage) && !isLoading && !error && (
         <Pagination
-          pageCount={100}
+          pageCount={data.total}
           page={page}
           perPage={perPage}
           createQueryString={createQueryString}

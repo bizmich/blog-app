@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { camelToSnake, snakeToCamel } from '@/lib/utils';
+import { getSession } from 'next-auth/react';
 
 export const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
@@ -23,6 +24,11 @@ axiosInstance.interceptors.response.use(
 
 axiosInstance.interceptors.request.use(
   async function (config) {
+    const session = await getSession();
+
+    config.headers.Authorization = session
+      ? `Bearer ${session?.user.token}`
+      : '';
     if (config.params) {
       config.params = camelToSnake(config.params);
     }
