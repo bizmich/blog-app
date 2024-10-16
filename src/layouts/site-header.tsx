@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { IDialogState } from '@types';
 import { cn } from '@lib';
 import { Button } from '@ui';
-import { StoreBlogFormDialog } from '@page-components';
+import { AuthActions, StoreBlogFormDialog } from '@page-components';
 import { MainNavigation, ModeToggle } from '@layout';
 
 export const SiteHeader = () => {
@@ -47,8 +47,10 @@ export const SiteHeader = () => {
           <Plus className="size-4" />
           Add
         </Button>
+        <AuthActions />
         <ModeToggle />
       </div>
+
       {open === 'store' && (
         <StoreBlogFormDialog
           open={open === 'store'}
